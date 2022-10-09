@@ -8,6 +8,8 @@ COPY . /data/project/
 WORKDIR /data/project/
 
 RUN yum -y update \
+    #[python - ImportError: libGL.so.1: cannot open shared object file: No such file or directory - Stack Overflow](https://stackoverflow.com/questions/55313610/importerror-libgl-so-1-cannot-open-shared-object-file-no-such-file-or-directo) opencv安装出错
+    && yum install mesa-libGL -y
     && yum -y install gcc gcc-c++ wget make git libSM-1.2.2-2.el7.x86_64 libXrender libXext\
     && yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel \
     && yum -y install python3-devel centos-release-scl scl-utils-build \
